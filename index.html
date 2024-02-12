@@ -34,17 +34,17 @@
         });
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-  map.addSource('red-black-base-noleaf', {
-      'type': 'raster',
-      'tiles': [
-          'assets/{x}/{y}/{z}.png'
-      ],
-      'tileSize': 256,
-      'attribution': 'Map tiles designed by kaid'dub pavel</a>'
-  });
-
+        map.addSource('red-black-base-noleaf', {
+            'type': 'raster',
+            'tiles': [
+                'assets/red-black-base-noleaf/{z}/{x}/{y}.png'
+            ],
+            'tileSize': 256,
+            'attribution': 'Map tiles designed by Bo Zhao</a>'
+        });
+            
   map.addLayer({
-      'id': 'red-dark',
+      'id': 'red-black-base-noleaf',
       'type': 'raster',
       'layout': {
           // 'visibility': 'none'
