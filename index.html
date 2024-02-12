@@ -32,30 +32,30 @@
             center: [-74.5, 40], // starting position [lng, lat]
             zoom: 9 // starting zoom
         });
-//         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
+        map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-//   map.addSource('assets/red-black-base-noleaf', {
-//       'type': 'raster',
-//       'tiles': [
-//           'assets/{x}/{y}/{z}.png'
-//       ],
-//       'tileSize': 256,
-//       'attribution': 'Map tiles designed by kaid'dub pavel</a>'
-//   });
+  map.addSource('assets/red-black-base-noleaf', {
+      'type': 'raster',
+      'tiles': [
+          'assets/{x}/{y}/{z}.png'
+      ],
+      'tileSize': 256,
+      'attribution': 'Map tiles designed by kaid'dub pavel</a>'
+  });
 
-//   map.addLayer({
-//       'id': 'red-dark',
-//       'type': 'raster',
-//       'layout': {
-//            //'visibility': 'none'
-//         	// Uncomment the line above will hide this map layer at first.
-//         	// This will be useful when you have multiple layers added to your map.
-//       },
-//       'source': 'assets/red-black-base-noleaf'
-//   });
+  map.addLayer({
+      'id': 'red-dark',
+      'type': 'raster',
+      'layout': {
+           //'visibility': 'none'
+        	// Uncomment the line above will hide this map layer at first.
+        	// This will be useful when you have multiple layers added to your map.
+      },
+      'source': 'assets/red-black-base-noleaf'
+  });
 
 
-// });
+});
     </script>
 
 </body>
