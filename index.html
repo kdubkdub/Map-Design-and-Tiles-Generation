@@ -34,7 +34,7 @@
         });
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-  map.addSource('assets/red-black-base-noleaf', {
+  map.addSource('red-black-base-noleaf', {
       'type': 'raster',
       'tiles': [
           'assets/{x}/{y}/{z}.png'
@@ -47,11 +47,11 @@
       'id': 'red-dark',
       'type': 'raster',
       'layout': {
-           //'visibility': 'none'
+           'visibility': 'none'
         	// Uncomment the line above will hide this map layer at first.
         	// This will be useful when you have multiple layers added to your map.
       },
-      'source': 'assets/red-black-base-noleaf'
+      'source': 'red-black-base-noleaf'
   });
 
 
