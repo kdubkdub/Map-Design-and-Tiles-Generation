@@ -65,6 +65,33 @@
         #menu a.active:hover {
             background: #3074a4;
         }
+
+        /* Legend style */
+        #legend {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        #legend h3 {
+            margin-top: 0;
+        }
+
+        #legend div {
+            margin-bottom: 5px;
+        }
+
+        #legend div span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
     </style>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
 </head>
@@ -72,6 +99,15 @@
 <body>
     <nav id="menu"></nav>
     <div id='map'></div>
+    <div id="legend">
+        <h3>Legend</h3>
+        <div id="basemap-legend">
+            <span style="background-color: #000;"></span> Basemap
+        </div>
+        <div id="thematic-layer-legend" style="display: none;">
+            <span style="background-color: #ff0000;"></span> Thematic Layer
+        </div>
+    </div>
     <script type="text/javascript">
         mapboxgl.accessToken =
             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
@@ -82,8 +118,7 @@
             center: [-77.0365, 38.8977] // starting center
         });
 
-        map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
-
+        map.on('load', () => {
             map.addSource('red-black-base', {
                 'type': 'raster',
                 'tiles': [
@@ -169,6 +204,10 @@
                     if (visibility === 'visible') {
                         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                         this.className = '';
+                        // Update the thematic layer legend
+                        if (clickedLayer === 'parking-violations') {
+                            document.getElementById('thematic-layer-legend').style.display = 'none';
+                        }
                     } else { //otherise, it will be turned on.
                         this.className = 'active';
                         map.setLayoutProperty(
@@ -176,6 +215,10 @@
                             'visibility',
                             'visible'
                         );
+                        // Update the thematic layer legend
+                        if (clickedLayer === 'parking-violations') {
+                            document.getElementById('thematic-layer-legend').style.display = 'block';
+                        }
                     }
                 };
 
