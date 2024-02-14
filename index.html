@@ -82,7 +82,8 @@
             center: [-77.0365, 38.8977] // starting center
         });
 
-        map.on('load', () => {
+        map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
+
             map.addSource('red-black-base', {
                 'type': 'raster',
                 'tiles': [
@@ -182,43 +183,6 @@
                 const layers = document.getElementById('menu');
                 layers.appendChild(link);
             }
-
-            // Create a link for the thematic layer toggle.
-            const thematicLink = document.createElement('a');
-            thematicLink.id = 'thematic-layer';
-            thematicLink.href = '#';
-            thematicLink.textContent = 'Thematic Layer';
-            thematicLink.className = 'inactive';
-
-            // Show or hide thematic layer when the toggle is clicked.
-            thematicLink.onclick = function (e) {
-                // preventDefault() tells the user agent that if the event does not get explicitly handled, 
-                // its default action should not be taken as it normally would be.
-                e.preventDefault();
-                // The stopPropagation() method prevents further propagation of the current event in the capturing 
-                // and bubbling phases. It does not, however, prevent any default behaviors from occurring; 
-                // for instance, clicks on links are still processed. If you want to stop those behaviors, 
-                // see the preventDefault() method.
-                e.stopPropagation();
-
-                const visibility = map.getLayoutProperty(
-                    'thematic-layer',
-                    'visibility'
-                );
-
-                // Toggle thematic layer visibility by changing the layout object's visibility property.
-                if (visibility === 'visible') {
-                    map.setLayoutProperty('thematic-layer', 'visibility', 'none');
-                    this.className = '';
-                } else {
-                    this.className = 'active';
-                    map.setLayoutProperty('thematic-layer', 'visibility', 'visible');
-                }
-            };
-
-            // Append the thematic layer toggle link to the menu.
-            const layers = document.getElementById('menu');
-            layers.appendChild(thematicLink);
         });
     </script>
 </body>
