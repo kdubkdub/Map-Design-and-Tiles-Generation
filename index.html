@@ -126,12 +126,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('uw') || !map.getLayer('lgbtq')) {
+            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['uw', 'lgbtq'];
+            const toggleableLayerIds = ['red-black-base', 'parking-violations'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
