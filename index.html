@@ -78,7 +78,7 @@
         let map = new mapboxgl.Map({
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v10',
-            zoom: 15, // starting zoom
+            zoom: 16, // starting zoom
             center: [-77.0365, 38.8977] // starting center
         });
 
@@ -101,7 +101,16 @@
                 'tileSize': 256,
                 'attribution': 'Map tiles designed by Kaiddub Pavel'
             });
-
+            
+            map.addSource('parking-over-base', {
+                'type': 'raster',
+                'tiles': [
+                    'assets/parking-over-base/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 256,
+                'attribution': 'Map tiles designed by Kaiddub Pavel'
+            });
+            
             map.addLayer({
                 'id': 'red-black-base',
                 'type': 'raster',
@@ -119,6 +128,16 @@
                 },
                 'source': 'parking-violations'
             });
+            
+            map.addLayer({
+                'id': 'parking-over-base',
+                'type': 'raster',
+                'layout': {
+                    'visibility': 'none'
+                },
+                'source': 'parking-over-base'
+            });
+
 
         });
 
@@ -126,12 +145,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations')) {
+            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations' || !map.getLayer('parking-over-base'))) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['red-black-base', 'parking-violations'];
+            const toggleableLayerIds = ['red-black-base', 'parking-violations','parking-over-base'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
