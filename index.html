@@ -42,17 +42,34 @@
             'tileSize': 256,
             'attribution': 'Map tiles designed by Kaiddub Pavel</a>'
         });
+        map.addSource('parking-violations-tiles', {
+            'type': 'raster',
+            'tiles': [
+                'assets/parking-violations/{z}/{x}/{y}.png'
+            ],
+            'tileSize': 256,
+            'attribution': 'Map tiles designed by Kaiddub Pavel</a>'
+        });
             
-          map.addLayer({
-              'id': 'red-black',
-              'type': 'raster',
-              'layout': {
-              //    'visibility': 'none'
-              //   	// Uncomment the line above will hide this map layer at first.
-              //   	// This will be useful when you have multiple layers added to your map.
-               },
-              'source': 'red-black-base'
-          });
+        map.addLayer({
+            'id': 'parking-violations',
+            'type': 'raster',
+            'layout': {
+                // 'visibility': 'none'
+            },
+            'source': 'parking-violations-tiles'
+        });
+            
+      map.addLayer({
+          'id': 'red-black',
+          'type': 'raster',
+          'layout': {
+             'visibility': 'none'
+          //   	// Uncomment the line above will hide this map layer at first.
+          //   	// This will be useful when you have multiple layers added to your map.
+           },
+          'source': 'red-black-base'
+      });
 
 
 });
