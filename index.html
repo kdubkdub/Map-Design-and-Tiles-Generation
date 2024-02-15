@@ -145,7 +145,7 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations' || !map.getLayer('parking-over-base'))) {
+            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations' || !map.getLayer('parking-over-base')) {
                 return;
             }
 
