@@ -46,7 +46,7 @@
             text-align: center;
         }
 
-        /* the last item of the layer items will not include a separator */
+        /* the last item of the layer items will not include a seperator */
         #menu a:last-child {
             border: none;
         }
@@ -84,7 +84,7 @@
 
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
 
-            map.addSource('red-black-base', {
+            map.addSource('red-black-base-tiles', {
                 'type': 'raster',
                 'tiles': [
                     'assets/red-black-base/{z}/{x}/{y}.png'
@@ -93,7 +93,7 @@
                 'attribution': 'Map tiles designed by Kaiddub Pavel</a>'
             });
 
-            map.addSource('parking-violations', {
+            map.addSource('parking-violations-tiles', {
                 'type': 'raster',
                 'tiles': [
                     'assets/parking-violations/{z}/{x}/{y}.png'
@@ -102,7 +102,7 @@
                 'attribution': 'Map tiles designed by Kaiddub Pavel'
             });
 
-            map.addSource('parking-over-base', {
+            map.addSource('parking-over-base-tiles', {
                 'type': 'raster',
                 'tiles': [
                     'assets/parking-over-base/{z}/{x}/{y}.png'
@@ -112,21 +112,21 @@
             });
 
             map.addLayer({
-                'id': 'red-black-base',
+                'id': 'red-black',
                 'type': 'raster',
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'red-black-base'
+                'source': 'red-black-base-tiles'
             });
 
             map.addLayer({
                 'id': 'parking-violations',
                 'type': 'raster',
                 'layout': {
-                    'visibility': 'none'
+                    // 'visibility': 'none'
                 },
-                'source': 'parking-violations'
+                'source': 'parking-violations-tiles'
             });
 
             map.addLayer({
@@ -135,22 +135,21 @@
                 'layout': {
                     'visibility': 'none'
                 },
-                'source': 'parking-over-base'
+                'source': 'parking-over-base-tiles'
             });
-
 
         });
 
 
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
-            // If these two layers were not added to the map, abort
-            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations') || !map.getLayer('parking-over-base')) {
+            // If these layers were not added to the map, abort
+            if (!map.getLayer('red-black') || !map.getLayer('parking-violations') || !map.getLayer('parking-over-base')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['red-black-base', 'parking-violations', 'parking-over-base'];
+            const toggleableLayerIds = ['red-black', 'parking-violations', 'parking-over-base'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
@@ -187,8 +186,8 @@
                     // if it is currently visible, after the clicking, it will be turned off.
                     if (visibility === 'visible') {
                         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                        this.className = 'inactive';
-                    } else { //otherwise, it will be turned on.
+                        this.className = '';
+                    } else { //otherise, it will be turned on.
                         this.className = 'active';
                         map.setLayoutProperty(
                             clickedLayer,
