@@ -46,7 +46,7 @@
             text-align: center;
         }
 
-        /* the last item of the layer items will not include a seperator */
+        /* the last item of the layer items will not include a separator */
         #menu a:last-child {
             border: none;
         }
@@ -101,7 +101,7 @@
                 'tileSize': 256,
                 'attribution': 'Map tiles designed by Kaiddub Pavel'
             });
-            
+
             map.addSource('parking-over-base', {
                 'type': 'raster',
                 'tiles': [
@@ -110,7 +110,7 @@
                 'tileSize': 256,
                 'attribution': 'Map tiles designed by Kaiddub Pavel'
             });
-            
+
             map.addLayer({
                 'id': 'red-black-base',
                 'type': 'raster',
@@ -128,7 +128,7 @@
                 },
                 'source': 'parking-violations'
             });
-            
+
             map.addLayer({
                 'id': 'parking-over-base',
                 'type': 'raster',
@@ -145,12 +145,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations' || !map.getLayer('parking-over-base'))) {
+            if (!map.getLayer('red-black-base') || !map.getLayer('parking-violations') || !map.getLayer('parking-over-base')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['red-black-base', 'parking-violations','parking-over-base'];
+            const toggleableLayerIds = ['red-black-base', 'parking-violations', 'parking-over-base'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
@@ -187,8 +187,8 @@
                     // if it is currently visible, after the clicking, it will be turned off.
                     if (visibility === 'visible') {
                         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-                        this.className = '';
-                    } else { //otherise, it will be turned on.
+                        this.className = 'inactive';
+                    } else { //otherwise, it will be turned on.
                         this.className = 'active';
                         map.setLayoutProperty(
                             clickedLayer,
