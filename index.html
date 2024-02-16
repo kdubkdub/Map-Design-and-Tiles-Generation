@@ -147,7 +147,6 @@
                 'source': 'parking-over-base-tiles'
             });
 
-        });
             map.addLayer({
                 'id': 'halloween-festival-theme',
                 'type': 'raster',
@@ -156,18 +155,17 @@
                 },
                 'source': 'halloween-festival-tiles'
             });
-
         });
 
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these layers were not added to the map, abort
-            if (!map.getLayer('red-black') || !map.getLayer('parking-violations') || !map.getLayer('parking-over-base' || !map.getLayer('halloween-festival-theme'))) {
+            if (!map.getLayer('red-black') || !map.getLayer('parking-violations') || !map.getLayer('parking-over-base') || !map.getLayer('halloween-festival-theme')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['red-black', 'parking-violations', 'parking-over-base','halloween-festival-theme'];
+            const toggleableLayerIds = ['red-black', 'parking-violations', 'parking-over-base', 'halloween-festival-theme'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
